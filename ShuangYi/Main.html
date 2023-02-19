@@ -1,45 +1,136 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <meta name="viewport" content="width=device-width>, initial-
-scale=1.0">
-
-    <title>Display Web</title>
-    <style type="text/css">
-        html {
-            overflow: auto;
-        }
-
-        html,
-        body,
-        div,
-        iframe {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            border: none;
-        }
-
-        iframe {
-            display: block;
+    <title>連結試算表 - 表單Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
+KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-
+U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+</script>
+    <style>
+        .container-contact {
+            padding: 20px;
+            text-align: center;
+            color: white;
+            background-color: rgb(42, 165, 159);
             width: 100%;
-            border: none;
-            overflow-y: auto;
-            overflow-x: hidden;
+        }
+
+        .container-contact h3 {
+            font-size: 30px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            font-size: 20px;
+
+            margin: 20px 0px 20px 0px;
+            background-color: rgb(6, 117, 119);
+            color: rgb(255, 255, 255);
+            border-radius: 20px;
+            transition: 1s;
+        }
+
+        .btn:hover {
+            background-color: rgb(178, 224, 84);
+            color: black;
+        }
+
+        input {
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <iframe
-        src="https://script.google.com/macros/s/AKfycbw5ew19BHrbiy5btT_RAUYjMNuO12MPCdEx42FXbG6SOGOLudhwgkFnmWpGtMFl658/exec"
-        frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto">
-    </iframe>
+    <div class="container-contact">
+        <h3>跟我聯絡Contact Us</h3>
 
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+                <form id="myForm">
+                    <div class="row">
+
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+
+                        </div>
+
+                        <div class="col-sm-6 form-group">
+
+                            <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                                required>
+
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <? var tasks = getData(); ?>
+                            <? for(var i=1; i<tasks.length;i++){ ?>
+
+                            <div class="form-group row">
+                                <div class="form-check col-sm-2">
+                                    <input class="form-check-input" type="checkbox" id="checkbox_<?=i?>"
+                                        value=<?=tasks[i][0]?>/>
+                                    <label class="form-check-label" for="checkbox_<?=i?>">
+                                        <?=tasks[i][0] ?>
+                                    </label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <input class="form-control" />
+                                </div>
+                            </div>
+
+                            <? } ?>
+                        </div>
+                        <br>
+                        <textarea class="form-control" id="comments" name="comments" placeholder="Comment"
+                            rows="5"></textarea>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <button class="btn " type="submit" id="submitButton">送出Submit</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn " type="submit" id="testButton">測試</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function getValues() {
+            var name = document.getElementById("name");
+            var email = document.getElementById("email");
+            var comment = document.getElementById("comment");
+            var rowData = {
+                name: name.value,
+                email: email.value,
+                comment: comment.value,
+            };
+
+            google.script.run.addData("myForm").reset();
+            alert("送出成功")
+        }
+
+        function getSheet() {
+
+            alert("送出成功")
+        }
+
+        document.getElementById("submitButton").addEventListener("click", getValues);
+        document.getElementById("testButton").addEventListener("click", getSheet);
+
+    </script>
 </body>
 
 </html>
